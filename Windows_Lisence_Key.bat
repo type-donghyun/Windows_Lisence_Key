@@ -46,7 +46,6 @@ SET "EchoLightRed=%_psc% write-host -back Black -fore Red"
 SET "EchoLightPurple=%_psc% write-host -back Black -fore Magenta"
 SET "EchoLightYellow=%_psc% write-host -back Black -fore Yellow"
 SET "EchoBrightWhite=%_psc% write-host -back Black -fore White"
-SET "ErrLine=echo: & %EchoRed% ==== ERROR ==== &echo:"
 
 ::_____________________________________________________________________________________________________________________________________________________________
 
