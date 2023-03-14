@@ -64,7 +64,7 @@ CHCP 65001 > nul
 IF %OSname% equ Windows (
 	GOTO :dowork
 ) ELSE (
-	%echored% 운영체제가 Windows가 아닙니다.
+	%Echored% 운영체제가 Windows가 아닙니다.
 	GOTO :workend
 )
 
@@ -73,19 +73,19 @@ IF %version% equ 10 (
 ) ELSE IF %version% equ 11 (
 	GOTO :dowork
 ) ELSE (
-	%echored% Windows 버전이 10/11이 아닙니다.
+	%Echored% Windows 버전이 10/11이 아닙니다.
 	GOTO :workend
 )
 
 :dowork
 IF %edition% equ Pro (
-	%echoyellow% Windows %version% %edition%가 감지되었습니다.
+	%Echoyellow% Windows %version% %edition%가 감지되었습니다.
 	SLMGR /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
 ) ELSE IF %edition% equ Home (
-	%echoyellow% Windows %version% %edition%이 감지되었습니다.
+	%Echoyellow% Windows %version% %edition%이 감지되었습니다.
 	SLMGR /ipk TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
 ) ELSE (
-	%echored% 활성화할 수 없는 Windows 버전입니다: %edition%
+	%Echored% 활성화할 수 없는 Windows 버전입니다: %edition%
 	GOTO :workend
 )
 
@@ -93,7 +93,7 @@ SLMGR /skms kms.digiboy.ir
 SLMGR /ato
 
 CLS
-%echogreen% Windows 정품 활성화
+%Echogreen% Windows 정품 활성화
 ECHO 라이센스 정보와 만료 날짜를 확인하시겠습니까?
 CHOICE /c 12 /n /t 3 /d 2 /m "[1] Yes [2] No"
 
