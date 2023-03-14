@@ -18,7 +18,9 @@ IF %errorlevel% neq 0 (
 	EXIT /B
 
 :gotAdmin
-	IF EXIST "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
+	IF EXIST "%temp%\getadmin.vbs" (
+		DEL "%temp%\getadmin.vbs"
+	)
 	PUSHD "%CD%"
 	CD /D "%~dp0"
 
