@@ -78,7 +78,7 @@ CHCP 65001 > nul
 CLS
 COLOR 02
 ECHO ▣ Windows 정품 활성화
-
+ECHO.
 CHOICE /c 12 /n /t 3 /d 2 /m "라이센스 정보와 만료 날짜를 확인하시겠습니까? [1] Yes [2] No"
 
 CLS
