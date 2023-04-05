@@ -40,6 +40,7 @@ CHCP 65001 > nul
 IF %OSname% equ Windows (
 	GOTO :dowork
 ) ELSE (
+	COLOR 04
 	ECHO 운영체제가 Windows가 아닙니다.
 	TIMEOUT /t 2 > nul
 	GOTO :workend
@@ -50,6 +51,7 @@ IF %version% equ 10 (
 ) ELSE IF %version% equ 11 (
 	GOTO :dowork
 ) ELSE (
+	COLOR 04
 	ECHO Windows 버전이 10/11이 아닙니다.
 	TIMEOUT /t 2 > nul
 	GOTO :workend
@@ -63,6 +65,7 @@ IF %edition% equ Pro (
 	ECHO Windows %version% %edition%이 감지되었습니다.
 	SLMGR /ipk TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
 ) ELSE (
+	COLOR 04
 	ECHO 활성화할 수 없는 Windows 버전입니다: %edition%
 	TIMEOUT /t 2 > nul
 	GOTO :workend
@@ -73,7 +76,8 @@ SLMGR /ato
 
 CHCP 65001 > nul
 CLS
-ECHO Windows 정품 활성화
+COLOR 02
+ECHO ▣ Windows 정품 활성화
 
 CHOICE /c 12 /n /t 3 /d 2 /m "라이센스 정보와 만료 날짜를 확인하시겠습니까? [1] Yes [2] No"
 
