@@ -25,31 +25,6 @@ IF %errorlevel% neq 0 (
 	CD /D "%~dp0"
 
 ::_____________________________________________________________________________________________________________________________________________________________
-:: ECHO 색상 설정
-
-SET _elev=
-IF /i "%~1"=="-el" SET _elev=1
-FOR /f "tokens=6 delims=[]. " %%G in ('ver') do set winbuild=%%G
-SET "_null=1>nul 2>nul"
-SET "_psc=powershell"
-SET "EchoBlack=%_psc% write-host -back DarkGray -fore Black"
-SET "EchoBlue=%_psc% write-host -back Black -fore DarkBlue"
-SET "EchoGreen=%_psc% write-host -back Black -fore Darkgreen"
-SET "EchoCyan=%_psc% write-host -back Black -fore DarkCyan"
-SET "EchoRed=%_psc% write-host -back Black -fore DarkRed"
-SET "EchoPurple=%_psc% write-host -back Black -fore DarkMagenta"
-SET "EchoYellow=%_psc% write-host -back Black -fore DarkYellow"
-SET "EchoWhite=%_psc% write-host -back Black -fore Gray"
-SET "EchoGray=%_psc% write-host -back Black -fore DarkGray"
-SET "EchoLightBlue=%_psc% write-host -back Black -fore Blue"
-SET "EchoLightGreen=%_psc% write-host -back Black -fore Green"
-SET "EchoLightCyan=%_psc% write-host -back Black -fore Cyan"
-SET "EchoLightRed=%_psc% write-host -back Black -fore Red"
-SET "EchoLightPurple=%_psc% write-host -back Black -fore Magenta"
-SET "EchoLightYellow=%_psc% write-host -back Black -fore Yellow"
-SET "EchoBrightWhite=%_psc% write-host -back Black -fore White"
-
-::_____________________________________________________________________________________________________________________________________________________________
 
 Title Windows License Key
 FOR /f "tokens=4-6" %%a in ('systeminfo') do (
@@ -65,7 +40,7 @@ CHCP 65001 > nul
 IF %OSname% equ Windows (
 	GOTO :dowork
 ) ELSE (
-	%EchoRed% 운영체제가 Windows가 아닙니다.
+	ECHO 운영체제가 Windows가 아닙니다.
 	GOTO :workend
 )
 
@@ -74,7 +49,7 @@ IF %version% equ 10 (
 ) ELSE IF %version% equ 11 (
 	GOTO :dowork
 ) ELSE (
-	%EchoRed% Windows 버전이 10/11이 아닙니다.
+	ECHO Windows 버전이 10/11이 아닙니다.
 	GOTO :workend
 )
 
@@ -86,7 +61,7 @@ IF %edition% equ Pro (
 	ECHO Windows %version% %edition%이 감지되었습니다.
 	SLMGR /ipk TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
 ) ELSE (
-	%EchoRed% 활성화할 수 없는 Windows 버전입니다: %edition%
+	ECHO 활성화할 수 없는 Windows 버전입니다: %edition%
 	GOTO :workend
 )
 
@@ -95,7 +70,7 @@ SLMGR /ato
 
 CHCP 65001 > nul
 CLS
-%EchoGreen% Windows 정품 활성화
+ECHO Windows 정품 활성화
 
 CHOICE /c 12 /n /t 3 /d 2 /m "라이센스 정보와 만료 날짜를 확인하시겠습니까? [1] Yes [2] No"
 
