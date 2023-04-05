@@ -41,6 +41,7 @@ IF %OSname% equ Windows (
 	GOTO :dowork
 ) ELSE (
 	ECHO 운영체제가 Windows가 아닙니다.
+	TIMEOUT /t 2 > nul
 	GOTO :workend
 )
 
@@ -50,6 +51,7 @@ IF %version% equ 10 (
 	GOTO :dowork
 ) ELSE (
 	ECHO Windows 버전이 10/11이 아닙니다.
+	TIMEOUT /t 2 > nul
 	GOTO :workend
 )
 
@@ -62,6 +64,7 @@ IF %edition% equ Pro (
 	SLMGR /ipk TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
 ) ELSE (
 	ECHO 활성화할 수 없는 Windows 버전입니다: %edition%
+	TIMEOUT /t 2 > nul
 	GOTO :workend
 )
 
