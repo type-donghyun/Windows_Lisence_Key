@@ -91,11 +91,10 @@ CHOICE /c 12 /n /t 3 /d 2 /m "라이센스 정보와 만료 날짜를 확인하�
 
 CLS
 IF %errorlevel% equ 1 (
-	SLMGR /xpr
-	SLMGR /dlv
+    SLMGR /xpr
+    SLMGR /dlv
 )
 
 :workend
 ECHO 작업을 종료합니다.
 TIMEOUT /t 3 > nul
-EXIT /b
