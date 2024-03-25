@@ -26,49 +26,58 @@ IF %errorlevel% neq 0 (
 
 ::_____________________________________________________________________________________________________________________________________________________________
 
-Title Windows License Key
+Title Windows License Activate
 FOR /f "tokens=4-6" %%a in ('systeminfo') do (
-	IF "%%a" equ "Windows" (
-		SET OSname=%%a
-		SET version=%%b
-		SET edition=%%c
-	)
+    IF "%%a" equ "Windows" (
+        SET OSname=%%a
+        SET version=%%b
+        SET edition=%%c
+    )
 )
 
 CHCP 65001 > nul
 
 IF %OSname% equ Windows (
-	GOTO :dowork
+    GOTO :dowork
 ) ELSE (
-	COLOR 04
-	ECHO 운영체제가 Windows가 아닙니다.
-	TIMEOUT /t 2 > nul
-	GOTO :workend
+    COLOR 04
+    ECHO 운영체제가 Windows가 아닙니다.
+    TIMEOUT /t 2 > nul
+    GOTO :workend
 )
 
 IF %version% equ 10 (
-	GOTO :dowork
+    GOTO :dowork
 ) ELSE IF %version% equ 11 (
-	GOTO :dowork
+    GOTO :dowork
 ) ELSE (
-	COLOR 04
-	ECHO Windows 버전이 10/11이 아닙니다.
-	TIMEOUT /t 2 > nul
-	GOTO :workend
+    COLOR 04
+    ECHO Windows 버전이 10/11이 아닙니다.
+    TIMEOUT /t 2 > nul
+    GOTO :workend
 )
 
 :dowork
 IF %edition% equ Pro (
-	ECHO Windows %version% %edition%가 감지되었습니다.
-	SLMGR /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+    ECHO Windows %version% %edition%가 감지되었습니다.
+    ECHO.
+    ECHO [1] 조직의 정품 인증 서비스를 사용하여 Windows 정품 인증(180일)
+    ECHO [2] 디지털 라이선스를 사용하여 정품 인증(무제한)
+    CHOICE /c 12
+    IF %errorlevel% equ 1 (
+        SLMGR /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+    ) ELSE IF %errorlevel% equ 2 (
+        cscript //nologo %windir%\system32\slmgr.vbs /ato
+        cscript //nologo %windir%\system32\slmgr.vbs /ipk VK7JG-NPHTM-C97JM-9MPGT-3V66T
+    )
 ) ELSE IF %edition% equ Home (
-	ECHO Windows %version% %edition%이 감지되었습니다.
-	SLMGR /ipk TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
+    ECHO Windows %version% %edition%이 감지되었습니다.
+    SLMGR /ipk TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
 ) ELSE (
-	COLOR 04
-	ECHO 활성화할 수 없는 Windows 버전입니다: %edition%
-	TIMEOUT /t 2 > nul
-	GOTO :workend
+    COLOR 04
+    ECHO 활성화할 수 없는 Windows 버전입니다: %edition%
+    TIMEOUT /t 2 > nul
+    GOTO :workend
 )
 
 SLMGR /skms kms.digiboy.ir
@@ -76,7 +85,6 @@ SLMGR /ato
 
 CHCP 65001 > nul
 CLS
-COLOR 02
 ECHO ▣ Windows 정품 활성화
 ECHO.
 CHOICE /c 12 /n /t 3 /d 2 /m "라이센스 정보와 만료 날짜를 확인하시겠습니까? [1] Yes [2] No"
@@ -90,3 +98,4 @@ IF %errorlevel% equ 1 (
 :workend
 ECHO 작업을 종료합니다.
 TIMEOUT /t 3 > nul
+EXIT /b
